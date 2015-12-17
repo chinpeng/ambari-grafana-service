@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="metainfo" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="schemaVersion" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element ref="services" />
+  			</xs:sequence>
+  		</xs:complexType>
+    </xs:element>
+    <xs:element name="services">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element ref="service" maxOccurs="unbounded" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="service">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element name="displayName" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element name="comment" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element name="version" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element ref="components" />
+    			<xs:element ref="osSpecifics" />
+    			<xs:element ref="commandScript" minOccurs="1" />
+    			<xs:element ref="configuration-dependencies" minOccurs="1" maxOccurs="1" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="components">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element ref="component" maxOccurs="unbounded" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="component">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element name="displayName" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element name="category" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element name="cardinality" type="xs:string" minOccurs="1" maxOccurs="1" />
+    			<xs:element ref="dependencies" minOccurs="0" maxOccurs="1" />
+    			<xs:element ref="commandScript" minOccurs="1" maxOccurs="1" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="dependencies">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element ref="dependency" maxOccurs="unbounded" minOccurs="0" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="dependency" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="script" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="scriptType" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="timeout" type="xs:integer" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+    <xs:element name="commandScript" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="script" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="scriptType" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="timeout" type="xs:integer" minOccurs="1" maxOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="osSpecifics">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element ref="osSpecific" maxOccurs="unbounded" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+    <xs:element name="osSpecific" >
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="osFamily" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="packages">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="package">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="configuration-dependencies">
+    	<xs:complexType>
+    		<xs:sequence>
+    			<xs:element name="config-type" type="xs:string" maxOccurs="unbounded" minOccurs="1" />
+    		</xs:sequence>
+    	</xs:complexType>
+    </xs:element>
+</xs:schema>
